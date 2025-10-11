@@ -5,17 +5,14 @@ plugins {
 
 android {
     namespace = "com.example.smartyoutubeautoplay"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 34 // Use 34 — SDK 36 ainda é preview em 2025
 
     defaultConfig {
         applicationId = "com.example.smartyoutubeautoplay"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
     }
 
     buildTypes {
@@ -27,15 +24,30 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
+    }
+
+    buildFeatures {
+        viewBinding = true // ✅ necessário pro binding funcionar
     }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
+    // Bibliotecas base do Android
+    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.google.android.material:material:1.12.0")
+
+    // WebView moderna
+    implementation("androidx.webkit:webkit:1.11.0")
+
+    // (opcional, mas útil) Logcat simplificado
+    implementation("androidx.activity:activity-ktx:1.9.2")
 }
