@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compilar APK (Debug)",
+      "type": "shell",
+      "command": "./gradlew assembleDebug",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Instalar APK no Android",
+      "type": "shell",
+      "command": "adb install -r app/build/outputs/apk/debug/app-debug.apk",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build + Install + Run (Debug)",
+      "type": "shell",
+      "problemMatcher": [],
+      "dependsOn": [
+        "Compilar APK (Debug)",
+        "Instalar APK no Android",
+        "Run App (Debug)"
+      ],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "Run App (Debug)",
+      "type": "shell",
+      "command": "adb shell am start -n com.example.smartyoutubeautoplay/.MainActivity",
+      "problemMatcher": []
+    }
+  ]
+}

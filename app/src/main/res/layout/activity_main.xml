@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#000">
 
-    <WebView
-        android:id="@+id/webView"
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/playerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:keepScreenOn="true" />
 
-    <Button
-        android:id="@+id/retryButton"
+    <TextView
+        android:id="@+id/debugText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Recarregar"
-        android:visibility="gone" />
-</LinearLayout>
+        android:background="#AA000000"
+        android:textColor="#00FF00"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:text="Buscando servidor..." />
+
+    <!-- Botão de blacklist (negativo) sobreposto próximo aos controles -->
+    <!-- Botão de blacklist (negativo) sobreposto próximo aos controles -->
+</FrameLayout>
