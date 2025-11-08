@@ -315,7 +315,7 @@ class MainActivity : AppCompatActivity() {
                 ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             }
             btn.layoutParams = lp
-            btn.setOnClickListener { blacklistCurrentAndNext() }
+            btn.setOnClickListener { confirmDeleteCurrent() }
             val insertIndex = if (nextBtn != null) parent.indexOfChild(nextBtn) + 1 else parent.childCount
             parent.addView(btn, insertIndex)
         }
@@ -446,11 +446,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (event.action == KeyEvent.ACTION_DOWN && event.repeatCount == 0) {
+            when (event.keyCode) {
+                KeyEvent.KEYCODE_X -> {
+                    confirmDeleteCurrent()
+                    return true
+                }
+            }
+        }
+        return super.dispatchKeyEvent(event)
+    }
+
+    private fun confirmDeleteCurrent() {
+        runOnUiThread {
+            AlertDialog.Builder(this)
+                .setTitle("Confirmar exclusão")
+                .setMessage("Deseja realmente deletar o vídeo atual?")
+                .setPositiveButton("Deletar") { dlg, _ ->
+                    dlg.dismiss()
+                    blacklistCurrentAndNext()
+                }
+                .setNegativeButton("Cancelar") { dlg, _ -> dlg.dismiss() }
+                .show()
+        }
+    }
     override fun onDestroy() {
         super.onDestroy()
         player.release()
     }
 }
+
+
+
+
+
+
 
 
 

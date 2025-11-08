@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Amarelo vibrante para fundo do ícone -->
+    <color name="ic_launcher_background">#FFEB3B</color>
+    <!-- Verde para elemento do ícone -->
+    <color name="icon_green">#2E7D32</color>
+</resources>
